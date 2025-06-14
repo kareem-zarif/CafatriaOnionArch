@@ -1,1 +1,6 @@
-BranchConfig.cs , BranchSupplierConfig.cs , EmployeeConfig.cs , MenuConfig.cs , OrderConfig.cs , OrderItemConfig.cs , ProductConfig.cs ,SupplierConfig.cs , TableConfig.cs
+BranchConfig.cs , BranchSupplierConfig.cs , EmployeeConfig.cs , MenuConfig.cs , 
+OrderConfig.cs , OrderItemConfig.cs , ProductConfig.cs ,SupplierConfig.cs , TableConfig.cs
+
+IBranchRepo.cs, IBranchSupplierRepo.cs, IEmployeeRepo.cs, IMenuRepo.cs, IOrderRepo.cs, IOrderItemRepo.cs, IProductRepo.cs, ISupplierRepo.cs, ITableRepo.cs
+
+BranchRepo.cs, BranchSupplierRepo.cs, EmployeeRepo.cs, MenuRepo.cs, OrderRepo.cs, OrderItemRepo.cs, ProductRepo.cs, SupplierRepo.cs, TableRepo.cs

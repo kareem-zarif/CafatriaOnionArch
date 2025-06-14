@@ -1,0 +1,6 @@
+-instead of new Datetime.now in modfiedOn and CreatedOn :: override saveChanges => to enable you auto track time of modificaton as Datetime.now will track for first time only
+
+
+-For unit testing, use a mocking framework like Moq to mock IUnitOfWork and ISupplierRepository.
+
+done//-insted of cretion  Repo for every entity => use BaseRepo<Entity,Id> directly 
