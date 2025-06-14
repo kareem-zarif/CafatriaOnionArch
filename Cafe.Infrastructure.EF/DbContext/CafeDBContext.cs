@@ -22,14 +22,18 @@ namespace Cafe.Infrastructure.EF
             base.OnModelCreating(modelBuilder);
         }
 
-        public DbSet<Branch> Branches { get; set; }
-        public DbSet<BranchSupplier> BranchesSupplier { get; set; }
-        public DbSet<Employee> Employees { get; set; }
-        public DbSet<Menu> Menus { get; set; }
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderItem> OrderItems { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Supplier> Suppliers { get; set; }
-        public DbSet<Table> Tables { get; set; }
+        public virtual DbSet<Branch> Branches { get; set; }
+        //virtiual for unit testing and mocking and any extensibility and testability
+        //	Writing automated tests 
+        //  Using lazy loading to improve performance 
+        //  Creating derived contexts for different environments (test/production)
+        public virtual DbSet<BranchSupplier> BranchesSupplier { get; set; }
+        public virtual DbSet<Employee> Employees { get; set; }
+        public virtual DbSet<Menu> Menus { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<OrderItem> OrderItems { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Supplier> Suppliers { get; set; }
+        public virtual DbSet<Table> Tables { get; set; }
     }
 }
