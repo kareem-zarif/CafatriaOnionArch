@@ -67,6 +67,36 @@ namespace Cafe.Infrastructure.EF.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Branches");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("11111111-1111-1111-1111-111111111111"),
+                            Address = "123 Main St",
+                            CloseAt = new TimeOnly(18, 0, 0),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(2024, 6, 20, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            Location = (byte)2,
+                            ManagerName = "Alice",
+                            ModifiedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ModifiedOn = new DateTime(2024, 6, 20, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            OpenAt = new TimeOnly(8, 0, 0),
+                            Phone = "01212345678"
+                        },
+                        new
+                        {
+                            Id = new Guid("22222222-2222-2222-2222-222222222222"),
+                            Address = "456 Side St",
+                            CloseAt = new TimeOnly(17, 0, 0),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(2024, 6, 20, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            Location = (byte)4,
+                            ManagerName = "Bob",
+                            ModifiedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ModifiedOn = new DateTime(2024, 6, 20, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            OpenAt = new TimeOnly(9, 0, 0),
+                            Phone = "01012345678"
+                        });
                 });
 
             modelBuilder.Entity("Cafe.Domain.BranchSupplier", b =>
@@ -105,6 +135,20 @@ namespace Cafe.Infrastructure.EF.Migrations
                     b.HasIndex("SupplierId");
 
                     b.ToTable("BranchesSupplier");
+
+                    b.HasData(
+                        new
+                        {
+                            BranchId = new Guid("11111111-1111-1111-1111-111111111111"),
+                            SupplierId = new Guid("66666666-6666-6666-6666-666666666666"),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(2024, 6, 20, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            HistoryOfDeal = "[]",
+                            Id = new Guid("55555555-5555-5555-5555-555555555555"),
+                            LastDeal = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ModifiedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ModifiedOn = new DateTime(2024, 6, 20, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("Cafe.Domain.Employee", b =>
@@ -159,6 +203,38 @@ namespace Cafe.Infrastructure.EF.Migrations
                     b.HasIndex("Email");
 
                     b.ToTable("Employees");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("33333333-3333-3333-3333-333333333333"),
+                            BranchId = new Guid("11111111-1111-1111-1111-111111111111"),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "john.doe@example.com",
+                            HireDate = new DateOnly(2022, 1, 10),
+                            IsActive = true,
+                            ModifiedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ModifiedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "John Doe",
+                            Phone = "john.doe@example.com",
+                            Role = (byte)2
+                        },
+                        new
+                        {
+                            Id = new Guid("44444444-4444-4444-4444-444444444444"),
+                            BranchId = new Guid("22222222-2222-2222-2222-222222222222"),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(2024, 6, 20, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "jane.smith@example.com",
+                            HireDate = new DateOnly(2023, 2, 15),
+                            IsActive = true,
+                            ModifiedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ModifiedOn = new DateTime(2024, 6, 20, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Jane Smith",
+                            Phone = "jane.smith@example.com",
+                            Role = (byte)3
+                        });
                 });
 
             modelBuilder.Entity("Cafe.Domain.Menu", b =>
@@ -187,6 +263,26 @@ namespace Cafe.Infrastructure.EF.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Menus");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("88888888-8888-8888-8888-888888888888"),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(2024, 6, 20, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            MenuName = "Breakfast",
+                            ModifiedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ModifiedOn = new DateTime(2024, 6, 20, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = new Guid("99999999-9999-9999-9999-999999999999"),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(2024, 6, 20, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            MenuName = "Lunch",
+                            ModifiedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ModifiedOn = new DateTime(2024, 6, 20, 10, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("Cafe.Domain.Order", b =>
@@ -226,6 +322,32 @@ namespace Cafe.Infrastructure.EF.Migrations
                     b.HasIndex("TableId");
 
                     b.ToTable("Orders");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("a9999999-aaaa-aaaa-9999-99999999999a"),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(2024, 6, 20, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            ModifiedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ModifiedOn = new DateTime(2024, 6, 20, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            OrderStatus = (byte)1,
+                            OrderedOn = new DateTime(2024, 6, 20, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            TableId = new Guid("11111111-aaaa-aaaa-aaaa-111111111111"),
+                            TotalMoney = 100.0
+                        },
+                        new
+                        {
+                            Id = new Guid("b9999999-aaaa-aaaa-9999-99999999999b"),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(2024, 6, 20, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            ModifiedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ModifiedOn = new DateTime(2024, 6, 20, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            OrderStatus = (byte)3,
+                            OrderedOn = new DateTime(2024, 6, 20, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            TableId = new Guid("22222222-aaaa-aaaa-aaaa-222222222222"),
+                            TotalMoney = 150.0
+                        });
                 });
 
             modelBuilder.Entity("Cafe.Domain.OrderItem", b =>
@@ -270,6 +392,34 @@ namespace Cafe.Infrastructure.EF.Migrations
                         .IsUnique();
 
                     b.ToTable("OrderItems");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("c9999999-aaaa-aaaa-9999-99999999999c"),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(2024, 6, 20, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            ItemNotes = "No onions",
+                            ModifiedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ModifiedOn = new DateTime(2024, 6, 20, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            OrderId = new Guid("a9999999-aaaa-aaaa-9999-99999999999a"),
+                            ProductId = new Guid("cccccccc-cccc-cccc-cccc-cccccccccccc"),
+                            Quantity = 2,
+                            UnitPrice = 25.0
+                        },
+                        new
+                        {
+                            Id = new Guid("d9999999-aaaa-aaaa-9999-99999999999d"),
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(2024, 6, 20, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            ItemNotes = "Extra cheese",
+                            ModifiedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ModifiedOn = new DateTime(2024, 6, 20, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            OrderId = new Guid("b9999999-aaaa-aaaa-9999-99999999999b"),
+                            ProductId = new Guid("dddddddd-dddd-dddd-dddd-dddddddddddd"),
+                            Quantity = 3,
+                            UnitPrice = 50.0
+                        });
                 });
 
             modelBuilder.Entity("Cafe.Domain.Product", b =>
@@ -323,6 +473,36 @@ namespace Cafe.Infrastructure.EF.Migrations
                     b.HasIndex("IsAvailable", "Category");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("cccccccc-cccc-cccc-cccc-cccccccccccc"),
+                            Category = (byte)0,
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsAvailable = false,
+                            MenuId = new Guid("88888888-8888-8888-8888-888888888888"),
+                            ModifiedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ModifiedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Burger",
+                            Price = 25.0,
+                            RemainInStock = 0
+                        },
+                        new
+                        {
+                            Id = new Guid("dddddddd-dddd-dddd-dddd-dddddddddddd"),
+                            Category = (byte)0,
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsAvailable = false,
+                            MenuId = new Guid("88888888-8888-8888-8888-888888888888"),
+                            ModifiedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ModifiedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Pizza",
+                            Price = 50.0,
+                            RemainInStock = 0
+                        });
                 });
 
             modelBuilder.Entity("Cafe.Domain.Supplier", b =>
@@ -360,6 +540,30 @@ namespace Cafe.Infrastructure.EF.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Suppliers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("66666666-6666-6666-6666-666666666666"),
+                            Address = "789 Supplier Ave",
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(2024, 6, 20, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            ModifiedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ModifiedOn = new DateTime(2024, 6, 20, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Fresh Foods Co.",
+                            phone = "01234567890"
+                        },
+                        new
+                        {
+                            Id = new Guid("77777777-7777-7777-7777-777777777777"),
+                            Address = "1010 Market St",
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(2024, 6, 20, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            ModifiedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ModifiedOn = new DateTime(2024, 6, 20, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Quality Supplies Ltd.",
+                            phone = "01123456789"
+                        });
                 });
 
             modelBuilder.Entity("Cafe.Domain.Table", b =>
@@ -396,6 +600,30 @@ namespace Cafe.Infrastructure.EF.Migrations
                     b.HasIndex("TableStatus");
 
                     b.ToTable("Tables");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("11111111-aaaa-aaaa-aaaa-111111111111"),
+                            Capacity = (byte)4,
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ModifiedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ModifiedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TableName = "Table 1",
+                            TableStatus = (byte)1
+                        },
+                        new
+                        {
+                            Id = new Guid("22222222-aaaa-aaaa-aaaa-222222222222"),
+                            Capacity = (byte)6,
+                            CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ModifiedBy = new Guid("00000000-0000-0000-0000-000000000000"),
+                            ModifiedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TableName = "Table 2",
+                            TableStatus = (byte)2
+                        });
                 });
 
             modelBuilder.Entity("Cafe.Domain.BranchSupplier", b =>
