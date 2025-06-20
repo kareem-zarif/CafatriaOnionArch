@@ -1,0 +1,24 @@
+
+so request start :
+	presentation => API => APP => Core => Infra.EF
+prsentation layer MVC will call controller in api layer which use sevices on App layer which use IUW in Core which call UOW and Repos in infra 
+
+-Presentation is just a client of the API
+
+DTO //No Naviagation but the foreignkey(CategoryId) will be in DTO  
+	//only properties from user in Req and properties wanna user see in Res
+•	Create DTO: No Id, only fields needed for creation.
+•	Update DTO: Add Id, include updatable fields.
+•	Response DTO: Add Id and any fields you want to return to the client.
+
+
+
+
+
+
+
+
+
+
+
+//next project => from scratch try make IBaseAppService

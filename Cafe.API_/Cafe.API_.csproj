@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="14.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.5">
       <PrivateAssets>all</PrivateAssets>
@@ -15,7 +16,28 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Cafe.Application\Cafe.Application.csproj" />
+    <ProjectReference Include="..\Cafe.Domain.Shared\Cafe.Domain.Shared.csproj" />
     <ProjectReference Include="..\Cafe.Infrastructure.EF\Cafe.Infrastructure.EF.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Dtos\Request\BranchSupplier\" />
+    <Folder Include="Dtos\Request\Employee\" />
+    <Folder Include="Dtos\Request\Menu\" />
+    <Folder Include="Dtos\Request\OrderItem\" />
+    <Folder Include="Dtos\Request\Order\" />
+    <Folder Include="Dtos\Request\Product\" />
+    <Folder Include="Dtos\Request\Supplier\" />
+    <Folder Include="Dtos\Request\Table\" />
+    <Folder Include="Dtos\Response\BranchSupplier\" />
+    <Folder Include="Dtos\Response\Employee\" />
+    <Folder Include="Dtos\Response\Menu\" />
+    <Folder Include="Dtos\Response\OrderItem\" />
+    <Folder Include="Dtos\Response\Order\" />
+    <Folder Include="Dtos\Response\Product\" />
+    <Folder Include="Dtos\Response\Supplier\" />
+    <Folder Include="Dtos\Response\Table\" />
   </ItemGroup>
 
 </Project>

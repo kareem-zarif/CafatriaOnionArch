@@ -1,5 +1,5 @@
-﻿using Cafe.Domain;
-using Cafe.Domain.CoreInterfaces;
+﻿using Cafe.Domain.CoreInterfaces;
+using Cafe.Domain.CoreInterfaces.IUOW;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,15 +36,24 @@ namespace Cafe.Infrastructure.EF
             //❌ Singleton: Creates one instance shared across the entire application ex:AppSettings
             //❌ Scoped: Creates one instance per scope (e.g., per HTTP request in a web app).ex: DbContext =>updates a user’s profile and logs the action; both use the same DbContext for consistency but every request use differnr dbcontext instance
 
-            services.AddTransient<IBaseRepo<Branch, Guid>, BaseRepo<Branch, Guid>>();
-            services.AddTransient<IBaseRepo<BranchSupplier, Guid>, BaseRepo<BranchSupplier, Guid>>();
-            services.AddTransient<IBaseRepo<Employee, Guid>, BaseRepo<Employee, Guid>>();
-            services.AddTransient<IBaseRepo<Menu, Guid>, BaseRepo<Menu, Guid>>();
-            services.AddTransient<IBaseRepo<Order, Guid>, BaseRepo<Order, Guid>>();
-            services.AddTransient<IBaseRepo<OrderItem, Guid>, BaseRepo<OrderItem, Guid>>();
-            services.AddTransient<IBaseRepo<Product, Guid>, BaseRepo<Product, Guid>>();
-            services.AddTransient<IBaseRepo<Supplier, Guid>, BaseRepo<Supplier, Guid>>();
-            services.AddTransient<IBaseRepo<Table, Guid>, BaseRepo<Table, Guid>>();
+            //another oponoin 
+            /*
+             Gotcha:
+Do not use AddTransient for repositories or services that depend on DbContext (or other scoped services), as this can cause runtime errors due to mismatched lifetimes.
+             */
+
+            services.AddScoped(typeof(IBaseRepo<,>), typeof(BaseRepo<,>));
+            //services.AddTransient<IBaseRepo<Branch, Guid>, BaseRepo<Branch, Guid>>();
+            //services.AddTransient<IBaseRepo<BranchSupplier, Guid>, BaseRepo<BranchSupplier, Guid>>();
+            //services.AddTransient<IBaseRepo<Employee, Guid>, BaseRepo<Employee, Guid>>();
+            //services.AddTransient<IBaseRepo<Menu, Guid>, BaseRepo<Menu, Guid>>();
+            //services.AddTransient<IBaseRepo<Order, Guid>, BaseRepo<Order, Guid>>();
+            //services.AddTransient<IBaseRepo<OrderItem, Guid>, BaseRepo<OrderItem, Guid>>();
+            //services.AddTransient<IBaseRepo<Product, Guid>, BaseRepo<Product, Guid>>();
+            //services.AddTransient<IBaseRepo<Supplier, Guid>, BaseRepo<Supplier, Guid>>();
+            //services.AddTransient<IBaseRepo<Table, Guid>, BaseRepo<Table, Guid>>();
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             return services;
         }

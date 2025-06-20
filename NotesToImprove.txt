@@ -4,3 +4,7 @@
 -For unit testing, use a mocking framework like Moq to mock IUnitOfWork and ISupplierRepository.
 
 done//-insted of cretion  Repo for every entity => use BaseRepo<Entity,Id> directly 
+
+If you expect very large result sets, consider pagination for GetAll endpoints to avoid loading too much data into memory
+
+logging  and add unit tests for controller actions and mapping profiles
