@@ -1,3 +1,5 @@
+using Cafe.API_.IOC;
+using Cafe.Application.IOC;
 using Cafe.Infrastructure.EF;
 namespace Cafe.API_
 {
@@ -8,7 +10,12 @@ namespace Cafe.API_
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.ConfigApiMapping();
+            builder.Services.ConfigAppAutoMapper();
+            builder.Services.ConfigAppServices();
             builder.Services.ConfigEF(builder.Configuration);
+
+
             builder.Services.AddControllers();
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();

@@ -6,4 +6,27 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="DTOS\Request\BranchSupplier\" />
+    <Folder Include="DTOS\Request\Employee\" />
+    <Folder Include="DTOS\Request\Menu\" />
+    <Folder Include="DTOS\Request\OrderItem\" />
+    <Folder Include="DTOS\Request\Order\" />
+    <Folder Include="DTOS\Request\Product\" />
+    <Folder Include="DTOS\Request\Supplier\" />
+    <Folder Include="DTOS\Request\Table\" />
+    <Folder Include="DTOS\Response\BranchSupplier\" />
+    <Folder Include="DTOS\Response\Employee\" />
+    <Folder Include="DTOS\Response\Menu\" />
+    <Folder Include="DTOS\Response\OrderItem\" />
+    <Folder Include="DTOS\Response\Order\" />
+    <Folder Include="DTOS\Response\Product\" />
+    <Folder Include="DTOS\Response\Supplier\" />
+    <Folder Include="DTOS\Response\Table\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cafe.Domain.Shared\Cafe.Domain.Shared.csproj" />
+  </ItemGroup>
+
 </Project>
