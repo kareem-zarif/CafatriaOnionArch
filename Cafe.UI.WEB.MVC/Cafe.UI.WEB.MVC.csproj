@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ViewModels\**" />
+    <Content Remove="ViewModels\**" />
+    <EmbeddedResource Remove="ViewModels\**" />
+    <None Remove="ViewModels\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cafe.Domain\Cafe.Domain.csproj" />
+    <ProjectReference Include="..\Cafe.Infrastructure.Integrations\Cafe.Infrastructure.Integrations.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Dtos\Request\BranchSupplier\" />
+    <Folder Include="Dtos\Request\Employee\" />
+    <Folder Include="Dtos\Request\Menu\" />
+    <Folder Include="Dtos\Request\OrderItem\" />
+    <Folder Include="Dtos\Request\Order\" />
+    <Folder Include="Dtos\Request\Product\" />
+    <Folder Include="Dtos\Request\Supplier\" />
+    <Folder Include="Dtos\Request\Table\" />
+    <Folder Include="Dtos\Response\BranchSupplier\" />
+    <Folder Include="Dtos\Response\Employee\" />
+    <Folder Include="Dtos\Response\Menu\" />
+    <Folder Include="Dtos\Response\OrderItem\" />
+    <Folder Include="Dtos\Response\Order\" />
+    <Folder Include="Dtos\Response\Product\" />
+    <Folder Include="Dtos\Response\Supplier\" />
+    <Folder Include="Dtos\Response\Table\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,52 @@
+﻿@model List<Cafe.UI.WEB.MVC.Dtos.Response.Branch.BranchResMvcDto>
+
+@{
+    ViewData["Title"] = "Branch List";
+}
+
+<h2>Branch List</h2>
+
+@if (Model == null || !Model.Any())
+{
+    <div>No branches found.</div>
+}
+else
+{
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Location</th>
+                <th>Manager Name</th>
+                <th>Open At</th>
+                <th>Close At</th>
+                <th>Phone</th>
+                <th>Address</th>
+                <th>Created On</th>
+                <th>Modified On</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@(item?.Id)</td>
+                    <td>@(item?.Location)</td>
+                    <td>@(item?.ManagerName ?? "N/A")</td>
+                    <td>@(item?.OpenAt.ToString("HH:mm") ?? "N/A")</td>
+                    <td>@(item?.CloseAt.ToString("HH:mm") ?? "N/A")</td>
+                    <td>@(item?.Phone ?? "N/A")</td>
+                    <td>@(item?.Address ?? "N/A")</td>
+                    <td>@(item?.CreatedOn.ToString("g") ?? "N/A")</td>
+                    <td>@(item?.ModifiedOn.ToString("g") ?? "N/A")</td>
+                    <td>
+                        <a asp-action="Edit" asp-controller="Branch" asp-route-id="@(item?.Id)">Edit</a> |
+                        <a asp-action="Details" asp-controller="Branch" asp-route-id="@(item?.Id)">Details</a> |
+                        <a asp-action="Delete" asp-controller="Branch" asp-route-id="@(item?.Id)">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
