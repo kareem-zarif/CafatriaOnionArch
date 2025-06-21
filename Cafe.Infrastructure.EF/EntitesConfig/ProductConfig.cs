@@ -14,6 +14,23 @@ namespace Cafe.Infrastructure.EF
 
             builder.HasIndex(x => x.Name);
             builder.HasIndex(x => new { x.IsAvailable, x.Category });
+
+            builder.HasData(
+              new Product
+              {
+                  Id = Guid.Parse("cccccccc-cccc-cccc-cccc-cccccccccccc"),
+                  Name = "Burger",
+                  Price = 25.0,
+                  MenuId = Guid.Parse("88888888-8888-8888-8888-888888888888")
+              },
+              new Product
+              {
+                  Id = Guid.Parse("dddddddd-dddd-dddd-dddd-dddddddddddd"),
+                  Name = "Pizza",
+                  Price = 50.0,
+                  MenuId = Guid.Parse("88888888-8888-8888-8888-888888888888")
+              }
+          );
         }
     }
 }

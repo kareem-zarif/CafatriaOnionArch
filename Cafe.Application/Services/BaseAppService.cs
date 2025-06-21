@@ -23,7 +23,6 @@ namespace Cafe.Application.Services
             _mapper = mapper;
         }
 
-
         public virtual async Task<TResponseAppDto> GetAsync(Guid id)
         {
             var foundEnt = await _baseRepo.GetAsync(id);
