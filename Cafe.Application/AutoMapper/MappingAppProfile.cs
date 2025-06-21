@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Cafe.Application.Shared.DTOS.Request;
+using Cafe.Application.Shared.DTOS.Request.Table;
 using Cafe.Application.Shared.DTOS.Response;
+using Cafe.Application.Shared.DTOS.Response.Table;
 using Cafe.Domain;
 
 namespace Cafe.Application.AutoMapper
@@ -14,6 +16,12 @@ namespace Cafe.Application.AutoMapper
             CreateMap<BranchCreateAppDto, Branch>().ReverseMap();
             CreateMap<BranchUpdateAppDto, Branch>().ReverseMap();
             CreateMap<BranchResAppDto, Branch>().ReverseMap();
+            #endregion
+
+            #region Table
+            CreateMap<TableAppCreateDto, Table>().ReverseMap();
+            CreateMap<TableAppUpdateDto, Table>().ReverseMap();
+            CreateMap<Table, TableAppRespDto>().ReverseMap();
             #endregion
         }
 

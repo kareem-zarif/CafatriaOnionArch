@@ -17,6 +17,7 @@ namespace Cafe.Application.IOC
         {
             //as your service depends on DbContext (which is itself registered as scoped). so use AddScoped with appServices
             appServices.AddScoped<IBranchAppService, BranchAppService>();
+            appServices.AddScoped<ITableAppService, TableAppService>();
 
             return appServices;
         }

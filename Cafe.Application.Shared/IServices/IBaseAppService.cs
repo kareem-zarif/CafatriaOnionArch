@@ -6,7 +6,7 @@
         where ResAppDto : class
     {
         Task<ResAppDto> GetAsync(Guid id);
-        Task<List<ResAppDto>> GetAsyncAll(); //as return is readonly , not need add/remove(collection) or indexing(list)
+        Task<List<ResAppDto>> GetAsyncAll();
         Task<ResAppDto> CreateAsync(TCreateAppDto requestDto);
         Task<ResAppDto> UpdateAsync(TUpdateAppDto requestDto);
         Task<ResAppDto> DeleteAsync(Guid id);

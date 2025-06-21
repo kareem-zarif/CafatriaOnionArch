@@ -11,6 +11,9 @@ DTO //No Naviagation but the foreignkey(CategoryId) will be in DTO
 •	Update DTO: Add Id, include updatable fields.
 •	Response DTO: Add Id and any fields you want to return to the client.
 
+-applDtos is server side validation 
+-infra EntityConfig and datanotation in model are the database validation
+
 
 
 

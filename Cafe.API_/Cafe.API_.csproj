@@ -29,7 +29,6 @@
     <Folder Include="Dtos\Request\Order\" />
     <Folder Include="Dtos\Request\Product\" />
     <Folder Include="Dtos\Request\Supplier\" />
-    <Folder Include="Dtos\Request\Table\" />
     <Folder Include="Dtos\Response\BranchSupplier\" />
     <Folder Include="Dtos\Response\Employee\" />
     <Folder Include="Dtos\Response\Menu\" />
@@ -37,7 +36,6 @@
     <Folder Include="Dtos\Response\Order\" />
     <Folder Include="Dtos\Response\Product\" />
     <Folder Include="Dtos\Response\Supplier\" />
-    <Folder Include="Dtos\Response\Table\" />
   </ItemGroup>
 
 </Project>

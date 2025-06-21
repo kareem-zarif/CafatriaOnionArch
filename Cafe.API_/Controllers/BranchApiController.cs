@@ -87,12 +87,12 @@ namespace Cafe.API_.Controllers
             var response = new BaseApiResponse<BranchResponseApiDto>();
             try
             {
-                var toCreate = _mapper.Map<BranchCreateAppDto>(requestDto);
-                var created = await _branchService.CreateAsync(toCreate);
-                var mapped = _mapper.Map<BranchResponseApiDto>(created);
+                var mappedGo = _mapper.Map<BranchCreateAppDto>(requestDto);
+                var created = await _branchService.CreateAsync(mappedGo);
+                var mappedCome = _mapper.Map<BranchResponseApiDto>(created);
 
                 response.Result = responseResultEnum.Success;
-                response.Data = mapped;
+                response.Data = mappedCome;
             }
             catch (Exception ex)
             {
@@ -116,12 +116,12 @@ namespace Cafe.API_.Controllers
 
             try
             {
-                var toUpdate = _mapper.Map<BranchUpdateAppDto>(reqestDto);
-                var updated = await _branchService.UpdateAsync(toUpdate);
-                var mapped = _mapper.Map<BranchResponseApiDto>(updated);
+                var mappedGo = _mapper.Map<BranchUpdateAppDto>(reqestDto);
+                var updated = await _branchService.UpdateAsync(mappedGo);
+                var mappedCome = _mapper.Map<BranchResponseApiDto>(updated);
 
                 response.Result = responseResultEnum.Success;
-                response.Data = mapped;
+                response.Data = mappedCome;
             }
             catch (Exception ex)
             {

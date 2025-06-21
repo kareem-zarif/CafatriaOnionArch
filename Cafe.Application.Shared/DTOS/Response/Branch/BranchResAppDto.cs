@@ -2,7 +2,7 @@
 
 namespace Cafe.Application.Shared.DTOS.Response
 {
-    public class BranchResAppDto
+    public class BranchResAppDto //will has no validation 
     {
         public Guid Id { get; set; }
         public BranchLocationEnum Location { get; set; }
