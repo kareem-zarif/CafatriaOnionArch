@@ -6,4 +6,35 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="ViewModels\Request\BranchSupplier\" />
+    <Folder Include="ViewModels\Request\Employee\" />
+    <Folder Include="ViewModels\Request\Menu\" />
+    <Folder Include="ViewModels\Request\OrderItem\" />
+    <Folder Include="ViewModels\Request\Order\" />
+    <Folder Include="ViewModels\Request\Product\" />
+    <Folder Include="ViewModels\Request\Supplier\" />
+    <Folder Include="ViewModels\Request\Table\" />
+    <Folder Include="ViewModels\Response\BranchSupplier\" />
+    <Folder Include="ViewModels\Response\Employee\" />
+    <Folder Include="ViewModels\Response\Menu\" />
+    <Folder Include="ViewModels\Response\OrderItem\" />
+    <Folder Include="ViewModels\Response\Order\" />
+    <Folder Include="ViewModels\Response\Product\" />
+    <Folder Include="ViewModels\Response\Supplier\" />
+    <Folder Include="ViewModels\Response\Table\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="14.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cafe.Application.Shared\Cafe.Application.Shared.csproj" />
+    <ProjectReference Include="..\Cafe.Application\Cafe.Application.csproj" />
+    <ProjectReference Include="..\Cafe.Domain\Cafe.Domain.csproj" />
+    <ProjectReference Include="..\Cafe.Infrastructure.EF\Cafe.Infrastructure.EF.csproj" />
+  </ItemGroup>
+
 </Project>

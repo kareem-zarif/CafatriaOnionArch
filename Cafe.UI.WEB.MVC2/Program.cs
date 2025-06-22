@@ -1,3 +1,6 @@
+using Cafe.Application.IOC;
+using Cafe.Infrastructure.EF;
+using Cafe.UI.WEB.MVC2.IOC;
 namespace Cafe.UI.WEB.MVC2
 {
     public class Program
@@ -7,6 +10,11 @@ namespace Cafe.UI.WEB.MVC2
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.ConfigAppAutoMapper();
+            builder.Services.ConfigAppServices();
+            builder.Services.ConfigEF(builder.Configuration);
+            builder.Services.ConfigMVC();
+
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();

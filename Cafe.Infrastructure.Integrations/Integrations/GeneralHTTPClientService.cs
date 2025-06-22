@@ -4,6 +4,7 @@ using System.Net.Http.Json;
 
 namespace Cafe.Infrastructure.Integrations.Integrations
 {
+    //integration with external Apis ,background jobs , authentication logic,..any thing through httppcontxt
     //in infra as i not need app layer logic , as MVC or any presentation layer or any external api will call my application , has its validation Dtos
     // Core = interface,
     // Infra = implementation,
