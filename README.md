@@ -163,4 +163,3 @@ By following SOLID, this project is easy to read, test, extend, and maintain—p
 - **Table Management:** Capacity, status (Available, Occupied, Reserved, NeedsCleaning), and order history.
 - **Supplier Management:** Contact info, branch relationships, and deal history.
 - **API & MVC:** RESTful API and MVC UI for full management.
-
