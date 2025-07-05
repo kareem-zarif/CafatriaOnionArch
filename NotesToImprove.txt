@@ -1,10 +1,21 @@
--instead of new Datetime.now in modfiedOn and CreatedOn :: override saveChanges => to enable you auto track time of modificaton as Datetime.now will track for first time only
+-override saveChanges =>
+instead of new Datetime.now in modfiedOn and CreatedOn ::  to enable you auto track time of modificaton as Datetime.now will track for first time only
 
 
 -For unit testing, use a mocking framework like Moq to mock IUnitOfWork and ISupplierRepository.
 
-done//-insted of cretion  Repo for every entity => use BaseRepo<Entity,Id> directly 
+done//BaseRepo
+insted of cretion  Repo for every entity => use BaseRepo<Entity,Id> directly 
 
+pagination for GetAll
 If you expect very large result sets, consider pagination for GetAll endpoints to avoid loading too much data into memory
 
+logging
 logging  and add unit tests for controller actions and mapping profiles
+
+soft delete
+in baseEntity add IsActive => and Make soft delete so can keep  soft deleted data on database
+
+repeated filters
+for repeated filters : ex orderedByName  :: Make method if repo so if wanna change will change only the repo
+for notRepeated filters  : use Expression<func<>>

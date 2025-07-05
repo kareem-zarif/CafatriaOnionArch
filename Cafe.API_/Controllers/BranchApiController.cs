@@ -1,4 +1,7 @@
-﻿using AutoMapper;
+﻿
+
+
+using AutoMapper;
 using Cafe.API_.Dtos.Request.Branch;
 using Cafe.API_.Dtos.Response;
 using Cafe.API_.Dtos.Response.Branch;
@@ -9,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Cafe.API_.Controllers
 {
-    [Route("api/[controller]")]
+    [Microsoft.AspNetCore.Components.Route("api/[controller]")]
     [ApiController]
     public class BranchApiController : ControllerBase
     {

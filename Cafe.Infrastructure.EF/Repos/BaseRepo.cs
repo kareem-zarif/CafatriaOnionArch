@@ -21,13 +21,9 @@ namespace Cafe.Infrastructure.EF
             _dbset = dbContext.Set<TEntity>();
         }
 
-        public async Task<TEntity> GetAsync(TId id)
+        public virtual async Task<TEntity> GetAsync(TId id)
         {
             var foundEntity = await _dbset.FindAsync(id); //AsNoTracking() for read only :: better peformance
-            //Equals rather than == with AsNoTracking() ::
-            //--Better SQL translation => Better performance
-            //--Better performance
-            //--2More reliable value type comparison => Equals checks for reference or value equality , == compares by reference
 
             if (foundEntity == null)
                 throw new Exception($"Not Found Entity with id : {id}");
@@ -35,7 +31,7 @@ namespace Cafe.Infrastructure.EF
             return foundEntity;
         }
 
-        public async Task<IEnumerable<TEntity>> GetAsyncAll(Expression<Func<TEntity, bool>> predicate = null)
+        public virtual async Task<IEnumerable<TEntity>> GetAsyncAll(Expression<Func<TEntity, bool>> predicate = null) //still beneficial for not common filters as employess who age >37 and IsAbsent>30 days
         {
             if (predicate == null)
                 return await _dbset.ToListAsync();
@@ -43,12 +39,16 @@ namespace Cafe.Infrastructure.EF
             return await _dbset.Where(predicate).ToListAsync();
         }
 
-        public async Task<TEntity> CreateAsync(TEntity entity)
+        public virtual async Task<IEnumerable<TEntity>> GetBlockedUsers() //benefits of common used methods -- as can change here once without change in every controlller use the service use this repo
+        {
+            return await _dbset.Where(x => x.Id.Equals(Guid.Empty)).ToListAsync();
+        }
+        public virtual async Task<TEntity> CreateAsync(TEntity entity)
         {
             var EntEntry = await _dbset.AddAsync(entity);
             return EntEntry.Entity;
         }
-        public async Task<TEntity> UpdateAsync(TEntity entity)
+        public virtual async Task<TEntity> UpdateAsync(TEntity entity)
         {
             var FoundEnt = await GetAsync(entity.Id);
 
@@ -59,7 +59,7 @@ namespace Cafe.Infrastructure.EF
 
             return entity;
         }
-        public async Task<TEntity> DeleteAsync(TId id)
+        public virtual async Task<TEntity> DeleteAsync(TId id)
         {
             var foundEntity = await GetAsync(id);
             _dbset.Remove(foundEntity);

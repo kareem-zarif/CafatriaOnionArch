@@ -1,10 +1,4 @@
-﻿using AutoMapper;
-using Cafe.Application.Shared.IServices;
-using Cafe.Domain;
-using Cafe.Domain.CoreInterfaces;
-using Cafe.Domain.CoreInterfaces.IUOW;
-
-namespace Cafe.Application.Services
+﻿namespace Cafe.Application.Services
 {
     public abstract class BaseAppService<TEntity, TCreateAppDto, TUpdateAppDto, TResponseAppDto> : IBaseAppService<TCreateAppDto, TUpdateAppDto, TResponseAppDto>
         where TEntity : BaseEnt<Guid>

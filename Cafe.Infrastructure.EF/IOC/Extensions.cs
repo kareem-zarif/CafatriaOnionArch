@@ -28,19 +28,6 @@ namespace Cafe.Infrastructure.EF
                 options.UseSqlServer(connString);
             });
 
-            //AddTransient for repos:
-            //  1-Thread Safety: Each request gets its own repository instance
-            //  2-No State Sharing:Each transaction(UOW) starts fresh and Prevents data leaks between requests
-            // 3-Proper garbage collection
-
-            //❌ Singleton: Creates one instance shared across the entire application ex:AppSettings
-            //❌ Scoped: Creates one instance per scope (e.g., per HTTP request in a web app).ex: DbContext =>updates a user’s profile and logs the action; both use the same DbContext for consistency but every request use differnr dbcontext instance
-
-            //another oponoin 
-            /*
-             Gotcha:
-Do not use AddTransient for repositories or services that depend on DbContext (or other scoped services), as this can cause runtime errors due to mismatched lifetimes.
-             */
 
             services.AddScoped(typeof(IBaseRepo<,>), typeof(BaseRepo<,>));
             //services.AddTransient<IBaseRepo<Branch, Guid>, BaseRepo<Branch, Guid>>();
