@@ -1,5 +1,4 @@
 ﻿using Cafe.Domain.Shared;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Cafe.Domain
 {
@@ -11,10 +10,7 @@ namespace Cafe.Domain
         public bool IsAvailable { get; set; }
         public int RemainInStock { get; set; }
         public CategoryEnum Category { get; set; }
-        [ForeignKey("Menu")]
-        public Guid MenuId { get; set; }
-        //nav
-        public virtual Menu Menu { get; set; }
-        public virtual OrderItem OrderItem { get; set; }
+        public virtual ICollection<Menu> Menus { get; set; } = new HashSet<Menu>();
+        public virtual ICollection<OrderItem> OrderItems { get; set; } = new HashSet<OrderItem>();
     }
 }

@@ -33,9 +33,9 @@ namespace Cafe.Infrastructure.EF
             //services.AddTransient<IBaseRepo<Branch, Guid>, BaseRepo<Branch, Guid>>();
             //services.AddTransient<IBaseRepo<BranchSupplier, Guid>, BaseRepo<BranchSupplier, Guid>>();
             //services.AddTransient<IBaseRepo<Employee, Guid>, BaseRepo<Employee, Guid>>();
-            //services.AddTransient<IBaseRepo<Menu, Guid>, BaseRepo<Menu, Guid>>();
+            //services.AddTransient<IBaseRepo<Menus, Guid>, BaseRepo<Menus, Guid>>();
             //services.AddTransient<IBaseRepo<Order, Guid>, BaseRepo<Order, Guid>>();
-            //services.AddTransient<IBaseRepo<OrderItem, Guid>, BaseRepo<OrderItem, Guid>>();
+            //services.AddTransient<IBaseRepo<OrderItems, Guid>, BaseRepo<OrderItems, Guid>>();
             //services.AddTransient<IBaseRepo<Product, Guid>, BaseRepo<Product, Guid>>();
             //services.AddTransient<IBaseRepo<Supplier, Guid>, BaseRepo<Supplier, Guid>>();
             //services.AddTransient<IBaseRepo<Table, Guid>, BaseRepo<Table, Guid>>();

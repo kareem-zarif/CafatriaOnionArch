@@ -1,6 +1,4 @@
-﻿using Cafe.Domain;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Cafe.Infrastructure.EF
 {
@@ -21,14 +19,12 @@ namespace Cafe.Infrastructure.EF
                   Id = Guid.Parse("cccccccc-cccc-cccc-cccc-cccccccccccc"),
                   Name = "Burger",
                   Price = 25.0,
-                  MenuId = Guid.Parse("88888888-8888-8888-8888-888888888888")
               },
               new Product
               {
                   Id = Guid.Parse("dddddddd-dddd-dddd-dddd-dddddddddddd"),
                   Name = "Pizza",
                   Price = 50.0,
-                  MenuId = Guid.Parse("88888888-8888-8888-8888-888888888888")
               }
           );
         }

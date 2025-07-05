@@ -1,11 +1,4 @@
-﻿using AutoMapper;
-using Cafe.Application.Shared.DTOS.Request;
-using Cafe.Application.Shared.IServices;
-using Cafe.UI.WEB.MVC2.ViewModels.Request.Branch;
-using Cafe.UI.WEB.MVC2.ViewModels.Response.Branch;
-using Microsoft.AspNetCore.Mvc;
-
-namespace Cafe.UI.WEB.MVC2.Controllers
+﻿namespace Cafe.UI.WEB.MVC2.Controllers
 {
     public class BranchController : Controller
     {
@@ -20,8 +13,8 @@ namespace Cafe.UI.WEB.MVC2.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var allBranches = await _branchService.GetAsyncAll();
-            var mapped = _mapper.Map<List<BranchResVM>>(allBranches);
+            var foundList = await _branchService.GetAsyncAll();
+            var mapped = _mapper.Map<List<BranchResVM>>(foundList);
             return View(mapped);
         }
 
@@ -30,7 +23,15 @@ namespace Cafe.UI.WEB.MVC2.Controllers
             return View();
         }
         [HttpPost]
-        //[ActionName("CreateBranch")]
+        [ValidateAntiForgeryToken]
+        #region ValidateAntiForgeryToken protects form CSRF
+        //1-Apllied to POST actions that modify data (like Create, Edit, Delete).
+        //When a form is rendered, an anti-forgery token is generated and included in the form as a hidden field. When the form is submitted, the token is sent back to the server
+        //Protect from Cross-Site Request Forgery(CSRF) by checking that the token is valid and matches the user's session.
+        //If you use the Razor <form asp-action="Create"> tag helper, the anti-forgery token is included automatically.
+        //
+
+        #endregion
         public async Task<IActionResult> Create(BranchCreateVM requestVM)
         {
             if (!ModelState.IsValid)

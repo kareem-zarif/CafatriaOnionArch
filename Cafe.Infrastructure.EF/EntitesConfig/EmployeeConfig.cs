@@ -1,6 +1,4 @@
-﻿using Cafe.Domain;
-using Cafe.Domain.Shared;
-using Microsoft.EntityFrameworkCore;
+﻿using Cafe.Domain.Shared;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Cafe.Infrastructure.EF
@@ -18,7 +16,7 @@ namespace Cafe.Infrastructure.EF
                {
                    Id = Guid.Parse("33333333-3333-3333-3333-333333333333"),
                    Name = "John Doe",
-                   Phone = "john.doe@example.com",
+                   Phone = "01208734123",
                    Email = "john.doe@example.com",
                    Role = EmpRole.Casher,
                    IsActive = true,
@@ -29,7 +27,7 @@ namespace Cafe.Infrastructure.EF
                {
                    Id = Guid.Parse("44444444-4444-4444-4444-444444444444"),
                    Name = "Jane Smith",
-                   Phone = "jane.smith@example.com",
+                   Phone = "01555322566",
                    Email = "jane.smith@example.com",
                    Role = EmpRole.ServiceEmp,
                    IsActive = true,

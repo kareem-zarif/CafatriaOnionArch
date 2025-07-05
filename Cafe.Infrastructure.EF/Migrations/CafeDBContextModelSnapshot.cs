@@ -17,7 +17,7 @@ namespace Cafe.Infrastructure.EF.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.5")
+                .HasAnnotation("ProductVersion", "9.0.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -217,7 +217,7 @@ namespace Cafe.Infrastructure.EF.Migrations
                             ModifiedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             ModifiedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "John Doe",
-                            Phone = "john.doe@example.com",
+                            Phone = "01208734123",
                             Role = (byte)2
                         },
                         new
@@ -232,7 +232,7 @@ namespace Cafe.Infrastructure.EF.Migrations
                             ModifiedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             ModifiedOn = new DateTime(2024, 6, 20, 10, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Jane Smith",
-                            Phone = "jane.smith@example.com",
+                            Phone = "01555322566",
                             Role = (byte)3
                         });
                 });
@@ -388,8 +388,7 @@ namespace Cafe.Infrastructure.EF.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.HasIndex("ProductId")
-                        .IsUnique();
+                    b.HasIndex("ProductId");
 
                     b.ToTable("OrderItems");
 
@@ -444,9 +443,6 @@ namespace Cafe.Infrastructure.EF.Migrations
                     b.Property<bool>("IsAvailable")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("MenuId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("ModifiedBy")
                         .HasColumnType("uniqueidentifier");
 
@@ -466,8 +462,6 @@ namespace Cafe.Infrastructure.EF.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MenuId");
-
                     b.HasIndex("Name");
 
                     b.HasIndex("IsAvailable", "Category");
@@ -482,7 +476,6 @@ namespace Cafe.Infrastructure.EF.Migrations
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsAvailable = false,
-                            MenuId = new Guid("88888888-8888-8888-8888-888888888888"),
                             ModifiedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             ModifiedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Burger",
@@ -496,7 +489,6 @@ namespace Cafe.Infrastructure.EF.Migrations
                             CreatedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             CreatedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsAvailable = false,
-                            MenuId = new Guid("88888888-8888-8888-8888-888888888888"),
                             ModifiedBy = new Guid("00000000-0000-0000-0000-000000000000"),
                             ModifiedOn = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Pizza",
@@ -626,6 +618,21 @@ namespace Cafe.Infrastructure.EF.Migrations
                         });
                 });
 
+            modelBuilder.Entity("MenuProduct", b =>
+                {
+                    b.Property<Guid>("MenusId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ProductsId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("MenusId", "ProductsId");
+
+                    b.HasIndex("ProductsId");
+
+                    b.ToTable("MenuProduct");
+                });
+
             modelBuilder.Entity("Cafe.Domain.BranchSupplier", b =>
                 {
                     b.HasOne("Cafe.Domain.Branch", "Branch")
@@ -676,8 +683,8 @@ namespace Cafe.Infrastructure.EF.Migrations
                         .IsRequired();
 
                     b.HasOne("Cafe.Domain.Product", "Product")
-                        .WithOne("OrderItem")
-                        .HasForeignKey("Cafe.Domain.OrderItem", "ProductId")
+                        .WithMany("OrderItems")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -686,15 +693,19 @@ namespace Cafe.Infrastructure.EF.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("Cafe.Domain.Product", b =>
+            modelBuilder.Entity("MenuProduct", b =>
                 {
-                    b.HasOne("Cafe.Domain.Menu", "Menu")
-                        .WithMany("Products")
-                        .HasForeignKey("MenuId")
+                    b.HasOne("Cafe.Domain.Menu", null)
+                        .WithMany()
+                        .HasForeignKey("MenusId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Menu");
+                    b.HasOne("Cafe.Domain.Product", null)
+                        .WithMany()
+                        .HasForeignKey("ProductsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Cafe.Domain.Branch", b =>
@@ -704,11 +715,6 @@ namespace Cafe.Infrastructure.EF.Migrations
                     b.Navigation("Employees");
                 });
 
-            modelBuilder.Entity("Cafe.Domain.Menu", b =>
-                {
-                    b.Navigation("Products");
-                });
-
             modelBuilder.Entity("Cafe.Domain.Order", b =>
                 {
                     b.Navigation("Items");
@@ -716,8 +722,7 @@ namespace Cafe.Infrastructure.EF.Migrations
 
             modelBuilder.Entity("Cafe.Domain.Product", b =>
                 {
-                    b.Navigation("OrderItem")
-                        .IsRequired();
+                    b.Navigation("OrderItems");
                 });
 
             modelBuilder.Entity("Cafe.Domain.Supplier", b =>

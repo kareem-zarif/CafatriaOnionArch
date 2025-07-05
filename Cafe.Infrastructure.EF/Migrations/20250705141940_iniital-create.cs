@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Cafe.Infrastructure.EF.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateEntitesseeding : Migration
+    public partial class iniitalcreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -48,6 +48,27 @@ namespace Cafe.Infrastructure.EF.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Menus", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Products",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    Price = table.Column<double>(type: "float", nullable: false),
+                    IsAvailable = table.Column<bool>(type: "bit", nullable: false),
+                    RemainInStock = table.Column<int>(type: "int", nullable: false),
+                    Category = table.Column<byte>(type: "tinyint", nullable: false),
+                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -92,7 +113,7 @@ namespace Cafe.Infrastructure.EF.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    Phone = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(13)", maxLength: 13, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Role = table.Column<byte>(type: "tinyint", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
@@ -115,29 +136,25 @@ namespace Cafe.Infrastructure.EF.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Products",
+                name: "MenuProduct",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
-                    Price = table.Column<double>(type: "float", nullable: false),
-                    IsAvailable = table.Column<bool>(type: "bit", nullable: false),
-                    RemainInStock = table.Column<int>(type: "int", nullable: false),
-                    Category = table.Column<byte>(type: "tinyint", nullable: false),
-                    MenuId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    MenusId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ProductsId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Products", x => x.Id);
+                    table.PrimaryKey("PK_MenuProduct", x => new { x.MenusId, x.ProductsId });
                     table.ForeignKey(
-                        name: "FK_Products_Menus_MenuId",
-                        column: x => x.MenuId,
+                        name: "FK_MenuProduct_Menus_MenusId",
+                        column: x => x.MenusId,
                         principalTable: "Menus",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_MenuProduct_Products_ProductsId",
+                        column: x => x.ProductsId,
+                        principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -249,6 +266,15 @@ namespace Cafe.Infrastructure.EF.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Products",
+                columns: new[] { "Id", "Category", "CreatedBy", "CreatedOn", "Description", "IsAvailable", "ModifiedBy", "ModifiedOn", "Name", "Price", "RemainInStock" },
+                values: new object[,]
+                {
+                    { new Guid("cccccccc-cccc-cccc-cccc-cccccccccccc"), (byte)0, new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Burger", 25.0, 0 },
+                    { new Guid("dddddddd-dddd-dddd-dddd-dddddddddddd"), (byte)0, new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Pizza", 50.0, 0 }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Suppliers",
                 columns: new[] { "Id", "Address", "CreatedBy", "CreatedOn", "ModifiedBy", "ModifiedOn", "Name", "phone" },
                 values: new object[,]
@@ -276,8 +302,8 @@ namespace Cafe.Infrastructure.EF.Migrations
                 columns: new[] { "Id", "BranchId", "CreatedBy", "CreatedOn", "Email", "HireDate", "IsActive", "ModifiedBy", "ModifiedOn", "Name", "Phone", "Role" },
                 values: new object[,]
                 {
-                    { new Guid("33333333-3333-3333-3333-333333333333"), new Guid("11111111-1111-1111-1111-111111111111"), new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "john.doe@example.com", new DateOnly(2022, 1, 10), true, new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "John Doe", "john.doe@example.com", (byte)2 },
-                    { new Guid("44444444-4444-4444-4444-444444444444"), new Guid("22222222-2222-2222-2222-222222222222"), new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(2024, 6, 20, 10, 0, 0, 0, DateTimeKind.Unspecified), "jane.smith@example.com", new DateOnly(2023, 2, 15), true, new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(2024, 6, 20, 10, 0, 0, 0, DateTimeKind.Unspecified), "Jane Smith", "jane.smith@example.com", (byte)3 }
+                    { new Guid("33333333-3333-3333-3333-333333333333"), new Guid("11111111-1111-1111-1111-111111111111"), new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "john.doe@example.com", new DateOnly(2022, 1, 10), true, new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "John Doe", "01208734123", (byte)2 },
+                    { new Guid("44444444-4444-4444-4444-444444444444"), new Guid("22222222-2222-2222-2222-222222222222"), new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(2024, 6, 20, 10, 0, 0, 0, DateTimeKind.Unspecified), "jane.smith@example.com", new DateOnly(2023, 2, 15), true, new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(2024, 6, 20, 10, 0, 0, 0, DateTimeKind.Unspecified), "Jane Smith", "01555322566", (byte)3 }
                 });
 
             migrationBuilder.InsertData(
@@ -287,15 +313,6 @@ namespace Cafe.Infrastructure.EF.Migrations
                 {
                     { new Guid("a9999999-aaaa-aaaa-9999-99999999999a"), new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(2024, 6, 20, 10, 0, 0, 0, DateTimeKind.Unspecified), new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(2024, 6, 20, 10, 0, 0, 0, DateTimeKind.Unspecified), (byte)1, new DateTime(2024, 6, 20, 9, 0, 0, 0, DateTimeKind.Unspecified), new Guid("11111111-aaaa-aaaa-aaaa-111111111111"), 100.0 },
                     { new Guid("b9999999-aaaa-aaaa-9999-99999999999b"), new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(2024, 6, 20, 10, 0, 0, 0, DateTimeKind.Unspecified), new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(2024, 6, 20, 10, 0, 0, 0, DateTimeKind.Unspecified), (byte)3, new DateTime(2024, 6, 20, 10, 0, 0, 0, DateTimeKind.Unspecified), new Guid("22222222-aaaa-aaaa-aaaa-222222222222"), 150.0 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Products",
-                columns: new[] { "Id", "Category", "CreatedBy", "CreatedOn", "Description", "IsAvailable", "MenuId", "ModifiedBy", "ModifiedOn", "Name", "Price", "RemainInStock" },
-                values: new object[,]
-                {
-                    { new Guid("cccccccc-cccc-cccc-cccc-cccccccccccc"), (byte)0, new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, new Guid("88888888-8888-8888-8888-888888888888"), new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Burger", 25.0, 0 },
-                    { new Guid("dddddddd-dddd-dddd-dddd-dddddddddddd"), (byte)0, new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, new Guid("88888888-8888-8888-8888-888888888888"), new Guid("00000000-0000-0000-0000-000000000000"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Pizza", 50.0, 0 }
                 });
 
             migrationBuilder.InsertData(
@@ -323,6 +340,11 @@ namespace Cafe.Infrastructure.EF.Migrations
                 column: "Email");
 
             migrationBuilder.CreateIndex(
+                name: "IX_MenuProduct_ProductsId",
+                table: "MenuProduct",
+                column: "ProductsId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_OrderItems_OrderId",
                 table: "OrderItems",
                 column: "OrderId");
@@ -330,8 +352,7 @@ namespace Cafe.Infrastructure.EF.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_OrderItems_ProductId",
                 table: "OrderItems",
-                column: "ProductId",
-                unique: true);
+                column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_OrderedOn",
@@ -347,11 +368,6 @@ namespace Cafe.Infrastructure.EF.Migrations
                 name: "IX_Products_IsAvailable_Category",
                 table: "Products",
                 columns: new[] { "IsAvailable", "Category" });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Products_MenuId",
-                table: "Products",
-                column: "MenuId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_Name",
@@ -374,6 +390,9 @@ namespace Cafe.Infrastructure.EF.Migrations
                 name: "Employees");
 
             migrationBuilder.DropTable(
+                name: "MenuProduct");
+
+            migrationBuilder.DropTable(
                 name: "OrderItems");
 
             migrationBuilder.DropTable(
@@ -383,6 +402,9 @@ namespace Cafe.Infrastructure.EF.Migrations
                 name: "Branches");
 
             migrationBuilder.DropTable(
+                name: "Menus");
+
+            migrationBuilder.DropTable(
                 name: "Orders");
 
             migrationBuilder.DropTable(
@@ -390,9 +412,6 @@ namespace Cafe.Infrastructure.EF.Migrations
 
             migrationBuilder.DropTable(
                 name: "Tables");
-
-            migrationBuilder.DropTable(
-                name: "Menus");
         }
     }
 }
