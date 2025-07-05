@@ -3,7 +3,7 @@
 namespace Cafe.Domain
 {
     public class OrderItem : BaseEnt<Guid>
-    {
+    { 
         public int Quantity { get; set; } = 1;
         public Double UnitPrice { get; set; }
         public string? ItemNotes { get; set; }
