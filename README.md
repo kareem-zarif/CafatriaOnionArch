@@ -14,7 +14,7 @@ A modern, modular cafe management system built with ASP.NET Core (.NET 9, C# 13)
 - `Cafe.Domain.Shared` – Enums to be Shared Cross All layers
 - `Cafe.Infrastructure.EF` – Database access and configuration
 - `Cafe.Application` – Business logic and DTOs
-- `Cafe.UI.WEB.MVC2` – Razor Pages UI
+- `Cafe.UI.WEB.MVC2` – MVC UI
 - `Cafe.API_` – RESTful API
 - `Cafe.Infrastructure.Integrations` – External services
 
@@ -57,7 +57,7 @@ After processing, the Application Layer creates a **Response DTO**.
 After processing, the Application Layer creates a **Response MVC ViewModel**.  
 - **Why?**  
   - It sends only the necessary data back to the View, keeping things secure and efficient.
-  - You can See You Live View 😊!
+  - You can See Your Live View 😊!
 ---
 
 ## 🚀 Why This Approach?
@@ -75,7 +75,7 @@ After processing, the Application Layer creates a **Response MVC ViewModel**.
 
 ## 🛣️ Example Trip: Creating an Order
 
-1. **User fills out an order form** (Razor Page).
+1. **User fills out an order form** (MVC).
 2. **Form data becomes a `CreateOrderRequestDto`.**
 3. **Application Layer** receives the DTO, checks business rules.
 4. **Infrastructure Layer** saves the order using Entity Framework Core.
@@ -116,7 +116,7 @@ Each class and layer has one clear job:
 - **Repositories** manage data operations.
 
 ### O — Open/Closed Principle
-The system is open for extension but closed for modification:
+Extensible without modifying existing code:
 - You can add new features (like new entities or business rules) by creating new classes or methods, without changing existing code.
 - Entity configurations are applied via reflection, so you can add new configurations without editing the core context.
 
@@ -126,11 +126,11 @@ You can replace base types with derived types without breaking the app:
 - Interfaces and abstractions are used for services and repositories.
 
 ### I — Interface Segregation Principle
-Interfaces are small and focused:
+Choose Specific interfaces over general ones so Interfaces are small and focused:
 - Each interface (like repository interfaces) contains only the methods relevant to its purpose, so classes only implement what they need.
 
 ### D — Dependency Inversion Principle
-High-level modules do not depend on low-level modules:
+High-level modules do not depend on low-level modules:Depend on abstractions, not implementations
 - The Application Layer depends on abstractions (interfaces), not concrete implementations.
 - Dependency Injection is used throughout (see `IOC/Extensions.cs`), making it easy to swap implementations (e.g., change the database or add caching).
 

@@ -14,7 +14,7 @@ DTO //No Naviagation but the foreignkey(CategoryId) will be in DTO
 -applDtos is server side validation 
 -infra EntityConfig and datanotation in model are the database validation
 
-
+-ignore  appsettings.Development.json
 
 
 

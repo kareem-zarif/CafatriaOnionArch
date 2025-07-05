@@ -10,7 +10,7 @@ namespace Cafe.Domain.CoreInterfaces
 
     {
         Task<TEntity> GetAsync(TId id);
-        Task<IEnumerable<TEntity>> GetAsyncAll(Expression<Func<TEntity, bool>> predicate = null); //Using Expression<Func<>> allows the query to be translated into SQL or other query languages for efficient database execution, rather than evaluating in memory
+        Task<IEnumerable<TEntity>> GetAsyncAll(Expression<Func<TEntity, bool>> predicate = null); //Using Expression<Func<>> •	Enables efficient filtering at the database level rather than in memory
         Task<TEntity> CreateAsync(TEntity entity);
         Task<TEntity> UpdateAsync(TEntity entity);
         Task<TEntity> DeleteAsync(TId id);

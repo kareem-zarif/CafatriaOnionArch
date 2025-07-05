@@ -10,7 +10,7 @@ namespace Cafe.Infrastructure.EF
         public void Configure(EntityTypeBuilder<Employee> builder)
         {
             builder.HasKey(e => e.Id);
-            builder.Property(x => x.Name).HasMaxLength(128);
+            builder.Property(x => x.Name).HasMaxLength(128).IsRequired();
             builder.HasIndex(x => x.Email);
 
             builder.HasData(

@@ -1,8 +1,4 @@
-﻿using Cafe.Domain;
-using Microsoft.EntityFrameworkCore;
-using System.Reflection;
-
-namespace Cafe.Infrastructure.EF
+﻿namespace Cafe.Infrastructure.EF
 {
     public class CafeDBContext : DbContext
     {
